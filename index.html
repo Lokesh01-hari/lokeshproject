@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ransomware Detection Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand-mark">RD</div>
+      <div>
+        <p class="eyebrow">ENDPOINT SECURITY • FILE ACTIVITY</p>
+        <h1>Ransomware Detection</h1>
+      </div>
+      <span id="liveBadge" class="badge"><i></i> Checking</span>
+    </header>
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">MONITORING CONSOLE</p>
+        <h2>Watch file activity.<br><span>Spot unusual bursts.</span></h2>
+        <p class="subtext">A lightweight activity monitor for your project's test folder.</p>
+        <div class="actions">
+          <button id="startBtn" class="primary">Start monitoring</button>
+          <button id="stopBtn" class="secondary">Stop monitoring</button>
+          <button id="clearBtn" class="ghost">Clear event log</button>
+        </div>
+      </div>
+      <div class="shield-art" aria-hidden="true"><div class="shield">✓</div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div></div>
+    </section>
+
+    <section id="alertBanner" class="alert hidden">
+      <span class="alert-icon">!</span>
+      <div><strong>Suspicious activity warning</strong><p>Unusually frequent file activity detected. Investigate the activity; this is a heuristic alert, not proof of ransomware.</p></div>
+    </section>
+
+    <section class="stats">
+      <article class="stat-card"><span class="stat-label">Monitor status</span><strong id="monitorStatus">Loading…</strong><small>Watchdog observer</small></article>
+      <article class="stat-card"><span class="stat-label">Events captured</span><strong id="eventCount">0</strong><small>Recent dashboard events</small></article>
+      <article class="stat-card"><span class="stat-label">Detection rule</span><strong>10 events / 5 sec</strong><small>Simple rate threshold</small></article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><p class="eyebrow">LIVE FEED</p><h3>File activity log</h3></div><span class="feed-state"><span></span> Auto-refreshing</span></div>
+      <div class="folder-path"><span class="folder-icon">▰</span><div><small>MONITORED DIRECTORY</small><code id="folderPath">Loading…</code></div></div>
+      <div class="table-wrap">
+        <table><thead><tr><th>TIME</th><th>EVENT</th><th>DETAILS</th><th>LEVEL</th></tr></thead><tbody id="eventRows"><tr><td colspan="4" class="empty">Waiting for events…</td></tr></tbody></table>
+      </div>
+      <p class="footnote">Safety note: test only with files you own in <code>test_files/</code>. This prototype detects activity rate only; it does not inspect file contents or confirm ransomware.</p>
+    </section>
+    <footer>Ransomware Detection System <span>•</span> Local prototype dashboard</footer>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
